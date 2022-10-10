@@ -5,6 +5,7 @@ import { LocationContext } from './contexts/LocationContext';
 import { Route, Routes } from 'react-router-dom';
 import Home from './routes/Home/Home';
 import LocationCreate from './routes/Location/LocationCreate';
+import Login from './routes/Login/Login';
 
 function App() {
   const { setLocations } = useContext(LocationContext);
@@ -18,6 +19,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route index element={<Home />} />
+          <Route path='login' element={<Login />} />
           <Route path='location/create' element={<LocationCreate />} />
         </Routes>
       </div>
