@@ -5,6 +5,7 @@ import { GiWindSlap } from "react-icons/gi";
 const Location = ({ location }) => {
   return (
     <div className="card" style={{ width: "18rem" }}>
+      <h1>hola</h1>
       <img src={location.img} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{location.name}</h5>

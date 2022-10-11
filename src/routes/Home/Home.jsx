@@ -7,6 +7,9 @@ const Home = () => {
 
   return (
     <div>
+        <a href="location/create" class="btn btn-primary">
+          Crear tarjeta
+        </a>
       <LocationList locations={locations} />
     </div>
   );
