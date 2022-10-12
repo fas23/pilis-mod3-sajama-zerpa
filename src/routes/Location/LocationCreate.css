@@ -1,13 +1,13 @@
 .d-flex {
-  background-color: rgba(201, 228, 231, 0.405);
+  background-color: #51557E;
   height: 100vh;
   display: flex;
 }
 form {
-  top: 0%;
-  background-color: rgba(154, 149, 169, 0.3);
   font-weight: bold;
   border-radius: 0.5;
-  box-shadow: inset 1px 1px 22px 4px;
-
+  box-shadow: inset 1px 1px 22px 4px rgb(0, 0, 0, 0.3);
+}
+#container {
+  place-items: center center;
 }
