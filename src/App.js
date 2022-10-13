@@ -16,13 +16,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App">
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='login' element={<Login />} />
-          <Route path='location/create' element={<LocationCreate />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path='login' element={<Login />} />
+        <Route path='location/create' element={<LocationCreate />} />
+      </Routes>
     </div>
   );
 }

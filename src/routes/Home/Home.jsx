@@ -6,7 +6,7 @@ const Home = () => {
   const { locations } = useContext(LocationContext);
 
   return (
-    <div>
+    <div className="container">
       <LocationList locations={locations} />
     </div>
   );

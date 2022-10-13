@@ -27,5 +27,6 @@ export const dataLocations = [
         "temperature": "15.8",
         "windspeed": "4.6",
         "img": "https://indiehoy.com/wp-content/uploads/2020/02/ciudad-cultural.jpg"
-    }
+    },
+
 ];
