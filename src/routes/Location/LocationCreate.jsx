@@ -1,23 +1,49 @@
 import { useContext, useState, useEffect } from "react";
-import "./LocationCreate.css";
+import { useNavigate } from "react-router-dom";
 import { LocationContext } from "../../contexts/LocationContext";
+import { getApiMeteo } from "../../service";
+import "./LocationCreate.css";
 
 const initForm = {
-  id: null,
   name: "",
   latitude: "",
   longitude: "",
-  temperature: "",
-  windspeed: "",
-  img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/PlazaBelgrano1.jpg/280px-PlazaBelgrano1.jpg",
+};
+
+const initDta = {
+  latitude: null,
+  longitude: null,
+  generationtime_ms: null,
+  utc_offset_seconds: null,
+  timezone: "",
+  timezone_abbreviation: "",
+  elevation: null,
+  current_weather: {
+    temperature: null,
+    windspeed: null,
+    winddirection: null,
+    weathercode: null,
+    time: "",
+  },
 };
 
 const LocationCreate = () => {
   const [form, setForm] = useState(initForm);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState(initDta);
+  const { locations, setLocations } = useContext(LocationContext);
+  const navigate = useNavigate();
 
-  const createData = (data) => {
-    console.log(data);
-  };
+  useEffect(() => {
+    getApiMeteo(form.latitude, form.longitude)
+      .then((data) => setData(data))
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, [form]);
+  
+  useEffect(() => {
+    console.log(locations);
+  }, [locations]);
 
   const handleChange = (e) => {
     setForm({
@@ -26,13 +52,37 @@ const LocationCreate = () => {
     });
   };
 
+  const cargar = (e) => {
+    e.preventDefault();
+    const locationNew = {
+      id: locations.length + 1,
+      name: "jujuy",
+      latitude: "1234567",
+      longitude: "teregvdchgf",
+      temperature: "tefdctedfdc",
+      windspeed: "yhgdvcgdvc",
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/PlazaBelgrano1.jpg/280px-PlazaBelgrano1.jpg",
+    };
+
+    setLocations([...locations, locationNew]);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.latitude || !form.longitude) {
       alert("Datos incompletos");
       return;
     }
-    createData(form);
+    const locationNew = {
+      id: locations.length + 1,
+      name: form.name,
+      latitude: form.latitude,
+      longitude: form.longitude,
+      temperature: data.current_weather.temperature,
+      windspeed: data.current_weather.windspeed,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/PlazaBelgrano1.jpg/280px-PlazaBelgrano1.jpg",
+    };
+
+    setLocations([...locations, locationNew]);
   };
 
   const handleReset = (e) => {
@@ -41,7 +91,7 @@ const LocationCreate = () => {
 
   return (
     <div id="container" className="d-flex justify-content-center">
-      <form className="card col-sm-4 col-md-3 p-5" onSubmit={handleSubmit}>
+      <form className="card col-sm-4 col-md-3 p-5" onSubmit={cargar}>
         <h3 className="display-10 text-dark text-center">CREAR TARJETA</h3>
         <div className="mb-3">
           <input
