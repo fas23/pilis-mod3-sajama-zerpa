@@ -6,8 +6,8 @@ const Home = () => {
   const { locations } = useContext(LocationContext);
 
   return (
-    <div>
-        <a href="location/create" className="btn btn-primary">
+    <div className="container">
+    <a href="location/create" className="btn btn-primary">
           Crear tarjeta
         </a>
       <LocationList locations={locations} />
