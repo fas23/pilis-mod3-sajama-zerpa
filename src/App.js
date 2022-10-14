@@ -10,10 +10,9 @@ import Navbar from './routes/Navbar/Navbar';
 
 function App() {
   const { setLocations } = useContext(LocationContext);
-
   useEffect(() => {
     setLocations(dataLocations);
-  })
+  }, []);
 
   return (
     <div className="App">

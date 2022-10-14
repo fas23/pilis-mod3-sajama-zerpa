@@ -1,0 +1,13 @@
+.d-flex {
+  background-color: #51557E;
+  height: 100vh;
+  display: flex;
+}
+form {
+  font-weight: bold;
+  border-radius: 0.5;
+  box-shadow: inset 1px 1px 22px 4px rgb(0, 0, 0, 0.3);
+}
+#container {
+  place-items: center center;
+}
