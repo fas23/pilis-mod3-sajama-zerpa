@@ -13,6 +13,7 @@ const Navbar = () => {
   }, []);
 
   const handleSignOut = () => {
+    localStorage.removeItem('currentUser');
     setCurrentUser(null);
   };
 
@@ -64,13 +65,15 @@ const Navbar = () => {
             </form>
 
             {currentUser ? (
-              <button
-                type='button'
-                className='btn btn-outline-danger m-2'
-                onClick={handleSignOut}
-              >
-                Cerrar Sesion
-              </button>
+              <>
+                <button
+                  type='button'
+                  className='btn btn-outline-danger m-2'
+                  onClick={handleSignOut}
+                >
+                  Cerrar Sesion
+                </button>
+              </>
             ) : (
               <Link className='btn btn-outline-primary m-2' to='/login'>
                 Iniciar Sesion
