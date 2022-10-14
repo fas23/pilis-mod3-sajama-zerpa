@@ -75,7 +75,7 @@ const LocationCreate = () => {
   };
 
   return (
-    <div id="container" className="d-flex justify-content-center">
+    <div id="container1" className="d-flex justify-content-center">
       <form className="card col-sm-4 col-md-3 p-5" onSubmit={handleSubmit}>
         <h3 className="display-10 text-dark text-center">CREAR TARJETA</h3>
         <div className="mb-3">
