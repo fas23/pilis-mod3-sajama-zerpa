@@ -68,6 +68,7 @@ const LocationCreate = () => {
     };
 
     setLocations([...locations, locationNew]);
+    navigate('/')
   };
 
   const handleReset = (e) => {
@@ -111,8 +112,8 @@ const LocationCreate = () => {
             className="form-control"
           />
         </div>
-        <input type="submit" value="Crear" />
-        <input type="reset" value="Limpiar" onClick={handleReset} />
+        <input type="submit" value="Crear" className="btn btn-secondary"/>
+        <input type="reset" value="Limpiar" onClick={handleReset} className="btn btn-dark"/>
       </form>
     </div>
   );
