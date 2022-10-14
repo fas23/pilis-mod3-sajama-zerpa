@@ -1,14 +1,20 @@
 import "./Location.css";
+import { useContext } from "react";
 import { FaTemperatureHigh } from "react-icons/fa";
 import { TbWorldLongitude, TbWorldLatitude } from "react-icons/tb";
 import { GiWindSlap } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { LocationContext } from "../contexts/LocationContext";
 
 const Location = ({ location }) => {
+  const { locations, setLocations } = useContext(LocationContext);
   const { id, img, latitude, longitude, windspeed, temperature } = location;
 
-  const eliminarCard = () => {
-    console.log(id);
+  const eliminarCard = (e) => {
+    e.preventDefault();
+    alert("Está seguro que desea eliminar?¡");
+    let locationList1 = locations.filter((card) => card.id !== id);
+    setLocations(locationList1);
   };
 
   return (
@@ -39,14 +45,12 @@ const Location = ({ location }) => {
             {windspeed}km/h
           </p>
         </div>
-
-        <Link
+        <input
+          type="reset"
+          value="Eliminar"
+          onClick={eliminarCard}
           className="btn btn-outline-danger"
-          to={"/"}
-          onClick={() => eliminarCard(id)}
-        >
-          Eliminar
-        </Link>
+        />
       </div>
     </div>
   );
