@@ -40,7 +40,7 @@ const LocationCreate = () => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, [form]);
-  
+
   useEffect(() => {
     console.log(locations);
   }, [locations]);
@@ -50,21 +50,6 @@ const LocationCreate = () => {
       ...form,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const cargar = (e) => {
-    e.preventDefault();
-    const locationNew = {
-      id: locations.length + 1,
-      name: "jujuy",
-      latitude: "1234567",
-      longitude: "teregvdchgf",
-      temperature: "tefdctedfdc",
-      windspeed: "yhgdvcgdvc",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/PlazaBelgrano1.jpg/280px-PlazaBelgrano1.jpg",
-    };
-
-    setLocations([...locations, locationNew]);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,7 +76,7 @@ const LocationCreate = () => {
 
   return (
     <div id="container" className="d-flex justify-content-center">
-      <form className="card col-sm-4 col-md-3 p-5" onSubmit={cargar}>
+      <form className="card col-sm-4 col-md-3 p-5" onSubmit={handleSubmit}>
         <h3 className="display-10 text-dark text-center">CREAR TARJETA</h3>
         <div className="mb-3">
           <input
