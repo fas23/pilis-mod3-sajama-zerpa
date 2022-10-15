@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LocationContext } from "../../contexts/LocationContext";
 import { getApiMeteo } from "../../service";
+import { imagenes } from "../../service";
 import "./LocationCreate.css";
 
 const initForm = {
@@ -10,29 +11,14 @@ const initForm = {
   longitude: "",
 };
 
-const initDta = {
-  latitude: null,
-  longitude: null,
-  generationtime_ms: null,
-  utc_offset_seconds: null,
-  timezone: "",
-  timezone_abbreviation: "",
-  elevation: null,
-  current_weather: {
-    temperature: null,
-    windspeed: null,
-    winddirection: null,
-    weathercode: null,
-    time: "",
-  },
-};
-
 const LocationCreate = () => {
   const [form, setForm] = useState(initForm);
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(initDta);
+  const [data, setData] = useState({});
   const { locations, setLocations } = useContext(LocationContext);
   const navigate = useNavigate();
+  var rand = Math.floor(Math.random() * imagenes.length);
+  var rValue = imagenes[rand];
 
   useEffect(() => {
     getApiMeteo(form.latitude, form.longitude)
@@ -40,10 +26,6 @@ const LocationCreate = () => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, [form]);
-
-  useEffect(() => {
-    console.log(locations);
-  }, [locations]);
 
   const handleChange = (e) => {
     setForm({
@@ -64,11 +46,11 @@ const LocationCreate = () => {
       longitude: form.longitude,
       temperature: data.current_weather.temperature,
       windspeed: data.current_weather.windspeed,
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/PlazaBelgrano1.jpg/280px-PlazaBelgrano1.jpg",
+      img: rValue,
     };
 
     setLocations([...locations, locationNew]);
-    navigate('/')
+    navigate("/");
   };
 
   const handleReset = (e) => {
@@ -112,8 +94,21 @@ const LocationCreate = () => {
             className="form-control"
           />
         </div>
-        <input type="submit" value="Crear" className="btn btn-secondary"/>
-        <input type="reset" value="Limpiar" onClick={handleReset} className="btn btn-dark"/>
+        <div className="btn-group">
+          <input
+            id="crear"
+            type="submit"
+            value="Crear"
+            className="btn btn-success"
+          />
+          <input
+            id="crear"
+            type="reset"
+            value="Limpiar"
+            onClick={handleReset}
+            className="btn btn-secondary"
+          />
+        </div>
       </form>
     </div>
   );
